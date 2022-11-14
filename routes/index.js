@@ -32,9 +32,9 @@ router.get('/register/company', function (req, res) {
   res.render('registercompany');
 
 })
-router.get('/profile', function (req, res, next) {
+router.get('/feed', function (req, res, next) {
   userModel.findOne({ username: req.session.passport.user })
-  //   .populate('usersPost')
+    .populate('usersPost')
     .then(function (user) {
   res.render("feed",{user});
 
@@ -136,7 +136,7 @@ router.post('/createpost', upload.single('imageurl'), function (req, res) {
             founduser.usersPost.push(createdpost)
             founduser.save()
               .then(function (data) {
-                res.redirect('/profile');
+                res.redirect('/feed');
               })
           })
       })
@@ -152,7 +152,7 @@ router.post('/createpost', upload.single('imageurl'), function (req, res) {
             founduser.usersPost.push(createdpost)
             founduser.save()
               .then(function (data) {
-                res.redirect('/profile');
+                res.redirect('/feed');
               })
           })
       })
@@ -205,8 +205,14 @@ router.post('/register/company', function (req, res) {
 router.post('/findbycontact', isLoggedIn, function (req, res) {
   res.send('its working');
 })
-router.get('/user/profile', function (req, res) {
-  res.render('profile');
+router.get('/profile', function (req, res) {
+  userModel.findOne({username: req.session.passport.user})
+  .then(function(foundUser){
+    userModel.find({location: foundUser.location})
+    .then(function(MayKnow){
+      res.render("myProfile", {foundUser, MayKnow})
+    })
+  })
 })
 router.get('/mynetwork', isLoggedIn, function (req, res) {
   userModel.find()

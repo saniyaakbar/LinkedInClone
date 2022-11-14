@@ -8,7 +8,7 @@ dateofpost:{
     type:Date,
     default:Date.now()
 },
-companyid:{type:mongoose.Schema.Types.ObjectId},
+companyid:{type:mongoose.Schema.Types.ObjectId, ref: 'users'},
 jobmode:String,
 jobtype:String
 
