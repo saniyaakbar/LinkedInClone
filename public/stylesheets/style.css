@@ -423,7 +423,7 @@ li > a:hover .flex {
 .news {
 	position: absolute;
 	top: 70px;
-	left: 77.5%;
+	left: 81%;
 	transform: translate(-50%, 0);
 	width: 250px;
 	min-height: 400px;
