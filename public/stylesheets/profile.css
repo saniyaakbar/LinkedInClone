@@ -16,6 +16,18 @@ html, body{
     background-color: #F3F2EF;
 }
 
+/* #profile_Box{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.438);
+    display: none;
+}
+
+#profileImg:hover #profileBox{
+    display: initial;
+} */
+
 #nav{
     height: 8vh;
     width: 100%;

@@ -35,7 +35,10 @@ const userSchema=mongoose.Schema({
   noofjobapplied:[{
     type:mongoose.Schema.Types.ObjectId,
     ref:'jobs'
-  }]
+  }],
+  country:String,
+  city:String,
+  state:String
   
 
 })

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../stylesheets//editIntro.css">
+</head>
+<body>
+    <div id="editIntro">
+
+        <div id="introForm">
+            <h1>Edit Intro</h1>
+            <p>* indicates required</p>
+            <form action="/editProfile" method="post">
+                
+                <input type="text" required value="<%=foundUser.name%>" placeholder="Name*" name="name">
+                <input type="text" required value="<%=foundUser.headline%>" name="headline" placeholder="Headline*">
+                <input type="text" required value="<%=foundUser.education%>" name="education" placeholder="Education*">
+                <input type="text" required value="<%=foundUser.city%>" name="city" placeholder="City*">
+                <input type="text" required value="<%=foundUser.state%>" name="state" placeholder="State*">
+                <input type="text" required value="<%=foundUser.country%>" name="country" placeholder="Country*">
+                    <button style="margin-left:30%; border:1px solid blue; color:blue;background-color:white; padding: 0.5vmax; border-radius:2vmax; width:30%">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -33,17 +33,12 @@ router.get('/register/company', function (req, res) {
 
 })
 router.get('/feed', function (req, res, next) {
-  userModel.findOne({ username: req.session.passport.user })
-    .populate('usersPost')
-    .then(function (user) {
-  res.render("feed",{user});
 
-
-  // userModel.findOne({username: req.session.passport.user})
-  // .populate('userPost')
-  // .then(function(found){
-  //   res.send(found)
-    })
+  postModel.find()
+  .populate("Userid")
+  .then(function(foundPost){
+    res.render("feed",{user:foundPost});
+  })
     })
 
 router.post('/register/user', function (req, res) {
@@ -70,6 +65,7 @@ router.post('/register/user', function (req, res) {
 });
 
 
+
 router.post('/login', passport.authenticate('local', {
   successRedirect: '/profile',
   failureRedirect: '/'
@@ -87,6 +83,9 @@ router.get('/jobs', isLoggedIn, async function (req, res) {
   res.render('alljobs')
 
 })
+
+
+
 router.get('/suggestions/:userid', function (req, res) {
   userModel.findOne({ _id: req.params.userid })
     .then(function (userfound) {
@@ -215,11 +214,44 @@ router.get('/profile', function (req, res) {
   })
 })
 router.get('/mynetwork', isLoggedIn, function (req, res) {
-  userModel.find()
-    .then(function (elem) {
-      res.render('mynetwork')
+  userModel.findOne({username: req.session.passport.user})
+  .populate("connectionrequest")
+  .then((foundUser)=>{
+    userModel.find()
+    .then((allUsers) => {
+      res.render('mynetwork', {foundUser, allUsers})
     })
+    
+  })
 })
+
+router.get('/editProfile', isLoggedIn, function(req, res){
+  userModel.findOne({username: req.session.passport.user})
+  .then(function(foundUser){
+    res.render("editIntro",{foundUser})
+
+  })
+})
+
+router.post('/editProfile',isLoggedIn, function(req, res){
+  userModel.findOne({username: req.session.passport.user})
+  .then(function(foundUser){
+    data = {
+      name: req.body.name,
+      headline:req.body.headline,
+      education:req.body.education,
+      country:req.body.country,
+      city:req.body.city,
+      state:req.body.state,
+    }
+    userModel.findOneAndUpdate({username:req.session.passport.user, data})
+    .then(function(updated){
+      updated.save()
+      res.redirect('/profile')
+    })
+  })
+})
+
 router.get('/applyjob/:id', isLoggedIn, function (req, res) {
   userModel.findOne({ username: req.session.passport.user })
     .then(function (data) {
@@ -254,20 +286,27 @@ router.get('/accept/:id', function (req, res) {
         })
     })
 })
-router.get('/reject:id', function (req, res) {
+router.get('/reject/:id', function (req, res) {
+  
   userModel.findOne({ username: req.session.passport.user })
     .then(function (user1) {
       userModel.findOne({ _id: req.params.id })
         .then(function (user2) {
-          var found = user1.connectionrequest.indexof(user2)
+
+
+          var found = user1.connectionrequest.indexOf(user2)
           user1.connectionrequest.splice(user2, 1)
           user1.save()
             .then(function () {
-              var found2 = user2.connectionrequestsent.indexof(user1)
+
+//               console.log("CHALA")
+// res.send("CHALA")
+              console.log(user2.connectionrequestsent.indexOf(user1))
+              var found2 = user2.connectionrequestsent.indexOf(user1)
               user2.connectionrequestsent.splice(found2, 1)
               user2.save()
                 .then(function () {
-                  res.redirect(req.headers.referer)
+                  res.redirect('/mynetwork')
                 })
 
             })

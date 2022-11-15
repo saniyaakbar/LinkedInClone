@@ -1,0 +1,56 @@
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+html, body{
+    height: 100vh;
+    width: 100%;
+}
+
+
+#editIntro{
+    height: 100vh;
+    width: 100%;
+    background-color: #F3F2EF;
+    overflow: hidden;
+}
+
+#introForm{
+    height: 80vh;
+    width: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #fff;
+    border-radius: 1vmax;
+    padding: 2vmax;
+}
+
+#introForm h1{
+    font-family: ogg;
+    border-bottom: 1px solid rgb(204, 204, 204);
+    margin-bottom: 1vmax;
+}
+
+#introForm p{
+    font-size: 0.8vmax;
+    opacity: 0.7;
+}
+
+#introForm form{
+    width: 50%;
+}
+
+#introForm form input{
+    height: 2.5vmax;
+    width: 90%;
+    font-size: 1.3vmax;
+    padding: 0.4vmax;
+    border: 1px solid rgb(171, 171, 171);
+    outline: none;
+    border-radius: 0.2vmax;
+    margin: 1vmax;
+}
