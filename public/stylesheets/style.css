@@ -310,7 +310,7 @@ li > a:hover .flex {
 }
 
 .profilecard {
-	top: 70px;
+	top: 1vmax;
 	width: 250px;
 	min-height: 400px;
 }
@@ -333,7 +333,7 @@ li > a:hover .flex {
 }
 
 .card-body {
-	margin-top: 40px;
+	margin-top: 1.5vmax;
 	text-align: center;
 }
 
@@ -357,13 +357,15 @@ li > a:hover .flex {
 
 .post_content{
 	padding: 1vmax;
+	font-size: 0.9vmax;
 	text-align: left;
-	min-height: 10vmax;
+	min-height: 2vmax;
 	margin-left: 8px; 
-	margin-top: 15px; 
+	/* margin-top:-1vmax;  */
 	margin-right: 15px; 
 	color: black;
-	background-color: aqua;
+	border-radius: 0.3vmax;
+	background-color: rgb(241, 241, 241);
 }
 
 .createPost{
@@ -395,6 +397,19 @@ li > a:hover .flex {
 
 #post:hover {
 	background-color: #f1f1f1;
+}
+
+#feed_imgcard{
+	width: 100%; 
+	height: 25rem;
+	margin-top: 20px ; 
+	background-position: center;
+	overflow: hidden;
+	position: relative;
+}
+
+#feed_imgcard img{
+	height: 10%;
 }
 
 .btn-light {
@@ -430,8 +445,8 @@ li > a:hover .flex {
 }
 
 .post {
-	width: 100%;
-	min-height: 60vh;
+	width: 35rem;
+	min-height: 7vh;
 	background-color: #fff;
 }
 
@@ -534,3 +549,144 @@ cursor: pointer;
 		background-color: #FFFFFF;
 		border-radius: 25px;	
 		}
+#invitations{
+	min-height: 3vmax;
+	padding-left: 1vmax;
+	padding-top: 3vmax;
+	padding-bottom: 1vmax;
+	width: 60%;
+	margin-left: 26%;
+	border-radius: 1vmax;
+	background-color: rgb(248, 248, 248);
+}
+
+#subInvitations{
+	position: relative;
+	border-radius: 1vmax;
+	height: 5vmax; 
+	width: 98%; 
+	/* margin-left: 33%;  */
+	margin-top: 1vmax; 
+	padding: 5px; 
+	display: flex; 
+	background-color: #fff;
+}
+
+#requests{
+	position: absolute; 
+	right: 5%; 
+	margin-top: 1vmax; 
+	display: flex; 
+	justify-content: space-between; 
+	width: 12vmax; 
+	align-items: center;
+}
+
+#requests button{
+	height: 3vmax;
+	padding: 1vmax;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1vmax;
+	/* padding-bottom: 10px; */
+	border-radius: 20px;	
+}
+
+#pImg{
+	height: 3vmax; 
+	width: 3vmax; 
+	border-radius: 50%; 
+	background-color: cornflowerblue;
+}
+
+#text h5,h6{
+	font-size: 0.7vmax;
+	line-height: 0.7vmax; 
+	margin-left: 1vmax;
+}
+
+#text h1{
+	font-size: 1.2vmax; 
+	line-height: 0.7vmax;
+}
+
+#suggestionbox{
+	position: absolute;
+	min-height: 90vh;
+	width: 60%;
+	padding: 2vmax; 
+	display: flex; 
+	justify-content: space-between; 
+	flex-wrap: wrap;
+}
+
+#cardpeoples{
+	width: 28%; 
+	height: 18vmax;
+	background-color: #fff; 
+	border-radius: 15px;
+	border: 1px solid black ;
+	position: relative; 
+	margin: 1vmax;
+}
+
+#cardimg{
+	position: relative;
+	width: 100%; 
+	height: 5vmax; 
+	background-color: rgb(221, 221, 221); 
+	position: relative;
+	border-top-right-radius: 13px;
+	border-top-left-radius: 13px;
+}
+
+#imgcard{
+	width: 5vmax; 
+	height: 5vmax; 
+	border-radius: 50%;
+	background-color: rgb(141, 141, 141); 
+	position: absolute;
+	top: 90%; 
+	left: 18%; 
+	transform: translate(-50%,-70%); 
+	background-size: cover; 
+	background-position: center;
+}
+
+#connection_details{
+	margin-top: 1.4vmax;
+	padding: 1vmax;
+	height: 10vmax;
+	width: 100%;
+	/* background-color: rgb(236, 181, 181); */
+}
+
+#connection_details h4{
+	font-size: 1.2vmax;
+}
+
+#connection_details p{
+	margin-top: -0.6vmax;
+	font-size: 0.8vmax;
+	opacity: 0.8;
+}
+
+#connection_details #hash_tags{
+	margin-top: 1vmax;
+}
+
+#connect_btn{
+	position: absolute;
+	left: 5%;
+	bottom: 3%;
+	padding: 0.2vmax;
+	font-size: 1vmax;
+	width: 85%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 1vmax;
+	border: 1px solid blue;
+	background-color: #fff;
+}

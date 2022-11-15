@@ -6,7 +6,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light ">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="#"><img src="../images/icon.jpg" alt=""></a>
+		<a class="navbar-brand" href="/feed"><img src="../images/icon.jpg" alt=""></a>
 		<form class="d-flex">
 			<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
 			<button class="btn btn-outline-primary" type="submit">Search</button>
@@ -90,7 +90,7 @@
 
 <div id="forflex" style="padding-top: 30px; ">
 	
-	<div  class="card profilecard " style="width: 13rem; position: fixed; margin-top: 2vmax; margin-left: -5vmax;"  >
+	<div  class="card profilecard " style="width: 13rem; position: fixed; margin-top: 2vmax;"  >
 		<img src="../images/banner.jpg" class="card-img-top banner" alt="banner">
 		<img src="../images/user.png" class="card-img-top profilepic" alt="profilepic">
 		<div class="card-body">
@@ -138,33 +138,38 @@
 				<button type="button" id="articlebtn" class="btn btn-light">📰&nbsp;&nbsp; Write Article</button>
 			</div>
 		</div>
-		<%user.usersPost.forEach(function(elem){%>
+		<%user.reverse().forEach(function(elem){%>
 		
 <%if(elem.imageurl==null){%>
-	<div class="card post mt-5 mx-5" style="width: 35rem;">
+	<div class="card post mt-5 mx-5">
 		<img src="../images/user.png" class="card-img-top profilepic" alt="profilepic">
 		<a href="/profile/currentUser>" style="text-decoration: none; color: black;">
-			<h5 style="margin-left: 85px; margin-top: 19px;"><%=user.name%></h5>
+			<h5 style="margin-left: 85px; margin-top: 19px;"><%=elem.Userid.name%></h5>
 		</a>
-		<p style="margin-left: 85px; margin-top: -5px;"><%=user.headline%></p>
-		<p style="margin-left: 28px; margin-top: 45px; margin-right: 15px; color: black;"><%=elem.postcontent%></p>
+		<p style="margin-left: 85px; margin-top: -5px;"><%=elem.Userid.headline%></p>
+		<%if(elem.postcontent === ""){} else {%>
+			<p class="post_content"><%=elem.postcontent%></p>
+		<%}%>
+		
 	</div>
 		<%}else{%>
 
-	<div class="card post mt-5 mx-5" style="width: 35rem;">
+	<div class="card post mt-5 mx-5" >
 			<div id="con1"><img src="../images/user.png" class="card-img-top profilepic" style="height: 3vmax; width:3vmax" alt="profilepic">
 				<a href="/profile/currentUser>" style="text-decoration: none; color: black;">
-					<h5 style="margin-left: 85px; margin-top: 19px;"><%=user.name%></h5>
-					<p style="margin-left:5.5vmax; margin-top:-1vmax; opacity:0.5"><%=user.location%></p>
+					<h5 style="margin-left: 85px; margin-top: 19px;"><%=elem.Userid.name%></h5>
+					<p style="margin-left:5.5vmax; margin-top:-1vmax; opacity:0.5"><%=elem.Userid.location%></p>
 				</a>
 				<!-- <p style="margin-left: 85px; margin-top:-2px;"><%=user.headline%></p> -->
 				</div>
 				
-				<div id="imgcard" style="width: 100%; height: 20rem;margin-top: 20px ; background-position: center;">
+				<div id="feed_imgcard" >
 				
-			<p class="post_content" style=" margin-left: 8px; margin-top: 15px; margin-right: 15px; color: black;"><%=elem.postcontent%> </p>
+					<%if(elem.postcontent === ""){} else {%>
+						<p class="post_content"><%=elem.postcontent%></p>
+					<%}%>
 				
-					<img src="../images/uploads/<%=elem.imageurl%>" style="width: 100%; height: 100%; object-fit: cover; background-position: center;" alt="">
+					<img src="../images/uploads/<%=elem.imageurl%>" style="width: 95%; margin-left: 0.6vmax; height: 85%; background-position: center;" alt="">
 				
 				</div>
 			

@@ -1,0 +1,122 @@
+<% include ./partials/header.ejs %>
+<nav class="navbar navbar-expand-lg navbar-light ">
+	<div class="container-fluid">
+		<a class="navbar-brand" href="#"><img src="../images/icon.jpg" alt=""></a>
+		<form class="d-flex">
+			<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+			<button class="btn btn-outline-primary" type="submit">Search</button>
+		</form>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+				<li id="marleft" class="nav-item d-flex flex-column align-items-center">
+					<a class="nav-link active" aria-current="page" href="/profile">
+						<div class="icon flex"><img class="img" style="opacity: 1;" src="../images/home.png" alt=""></div>
+						<div class="hometxt flex">Home</div>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" aria-current="page" href="/mynetwork">
+						<div class="icon connections flex"><img class="img" src="../images/connections.png" alt=""></div>
+						<div class="conntxt flex ">My Network</div>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link mrlft" aria-current="page" href="#">
+						<div class="icon flex jobs"><img class="img" src="../images/jobs.png" alt=""></div>
+						<div class="hometxt flex ">Jobs</div>
+					</a>
+                    <hr>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" aria-current="page" href="#">
+						<div class="icon msg flex"><img class="img" src="../images/msg.png" alt=""></div>
+						<div class="hometxt flex ">Messaging</div>
+					</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link notifications" aria-current="page" href="#">
+						<div class="icon notif flex"><img class="img" src="../images/notification.png" alt=""></div>
+						<div class="hometxt flex ">Notifications</div>
+					</a>
+				</li>
+				<div class="dropdown">
+					
+					<a href="" class="nav-link ">
+						<img id="me" class="img" src="../images/user.png" alt="default-pic">
+						<br>
+						Me
+					</a>
+					<div id="abs">
+						<div class="dropdown-content">
+							<a href="/profile">
+								<div id="profile">
+									<div id="dp"></div>
+									<div id="dets">
+										<h6>Name</h6>
+										<p>Headline</p>
+										<div class="btn rounded-pill" id="signinbtn">View Profile</div>
+									</div>
+								</div>
+							</a>
+							<hr>
+							<div id="scnd">
+								<h6>Account</h6>
+								<a href="">Settings & Privacy</a>
+								<a href="/logout">Logout</a>
+								<a href="">Language</a>
+							</div>
+							<hr>
+							<div id="third">
+								<h6>Manage</h6>
+								<a href="">Posts & Activity</a>
+								<a href="">Job Posting Account</a>
+							</div>
+							<hr>
+							<a href="/logout" id="lh">Sign Out</a>
+						</div>
+					</div>
+				</div>
+			</ul>
+			
+		</div>
+	</div>
+</nav>
+<div id="main4" style="min-height: 100vh; width: 100%; overflow: auto;">
+    
+
+
+
+
+<div id="jobbox" style="margin-top: 100px; margin-left: 300px;">
+<div id="vtop" style="width: 100%; height: 70px;padding: 20px;" >
+<h1 style="font-size: 30px;">Verification</h1>
+</div>
+<div id="vbottom" style="width: 100%; height:390px; padding: 10px;">
+	<form action="" style=" padding: 30px;">
+		<h4 style="margin-bottom:20px;">Provide the following Details</h4>
+		<input type="text" style="padding: 6px; width:600px; margin-bottom: 20px;" name="compName" placeholder="Company's Name">
+		<input type="text" style="padding: 6px; width:600px;margin-bottom: 20px;" name="compName" placeholder="Company's E-mail">
+		<input type="text" style="padding: 6px; width:600px; margin-bottom: 20px;" name="compName" placeholder="Your Job Profile">
+		<input type="file" name="offerletter" ><label for="offerletter"> Attach your offer letter</label>
+		<input type="submit"style="margin-top: 26px; width:120px;" name="submit" id="">
+	</form>
+</div>
+
+</div>
+
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+<%include ./partials/footer.ejs%>
