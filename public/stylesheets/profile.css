@@ -28,6 +28,25 @@ html, body{
     display: initial;
 } */
 
+.mayKnowEach{
+    padding: 0.5vmax;
+    position: relative;
+    margin-top: 1vmax;
+    height: 6vmax;
+    width: 80%;
+    /* background-color: aquamarine; */
+}
+
+.profilepic {
+	position: absolute;
+	left: 10%;
+	transform: translate(-50%, 0);
+	width: 3vmax;
+	height: 3vmax;
+	border-radius: 50%;
+    background-color: antiquewhite;
+}
+
 #nav{
     height: 8vh;
     width: 100%;
@@ -38,9 +57,9 @@ html, body{
 }
 
 #center{
-    padding-right: 10px;
+    padding-right: 3vmax;
     height: 100%;
-    width: 73%;
+    width: 85%;
     margin-left: 2%;
     justify-content: space-between;
     display: flex;
@@ -103,10 +122,12 @@ a{
 }
 
 #right{
+    margin-left: 10vmax;
     display: flex;
-    width: 50%;
+    width: 60%;
     margin-top: 10px;
     font-size: 30px;
+    /* background-color: aquamarine; */
 }
 
 #right i{
@@ -385,10 +406,11 @@ a:hover i{
     background-color: #fff;
     border-top: 1px solid grey;
     position: absolute;
-    bottom: 0%;
+    bottom: -10%;
     left: 0%;
     padding: 10px;
     font-size: 13px;
+    border-radius: 1vmax;
 
 }
 
@@ -421,6 +443,50 @@ button{
 
 .name{
     color: black !important;
+    margin-left: 3vmax;
+    margin-top: 0.7vmax;
 }
 
+.mayKnowEach p{
+    margin-top: -1.3vmax;
+    margin-left: 3vmax;
+}
 
+.mayKnowEach button{
+    margin-left: 3vmax;
+    width: 6vmax;
+    margin-top: 0.3vmax;
+    margin-bottom: 0.3vmax;
+    background-color: #fff;
+    color: rgb(3, 3, 79);
+    border: 1px solid rgb(3, 3, 79);
+}
+
+.upload_hover{
+    background-color: rgba(0, 0, 0, 0.285); 
+                position:absolute;
+                height: inherit;
+                width:inherit;
+                display:none;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+}
+
+#profileImg{
+    overflow: hidden; 
+    align-content: center; 
+    display: flex; 
+    justify-content: center;
+}
+
+#profileImg img{
+    /* object-fit: contain; */
+    /* display: none; */
+    height: inherit;
+    width: inherit;
+}
+
+#profileImg:hover .upload_hover{
+    display: flex;
+}

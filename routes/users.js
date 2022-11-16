@@ -38,7 +38,11 @@ const userSchema=mongoose.Schema({
   }],
   country:String,
   city:String,
-  state:String
+  state:String,
+  profilePic: {
+    type:String,
+    default:"user.png"
+  }
   
 
 })

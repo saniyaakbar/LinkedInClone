@@ -54,24 +54,44 @@
               <h5>notifications</h5>
           </div>
 
+          <%if(isVisiting){%>
+            <a href="/feed"><button style="margin-right: 1vmax;" >My Feed</button></a>
+
+            <a href="/profile"><button style="margin-right: 1vmax;" >My Profile</button></a>
+          <%}%>
+
           <a href="/logout"><button>Logout</button></a>
             </div>
         </div>
     </div>
+   
      
     <div id="profileTopBox">
+
         
         <div id="backgroundImg">
             <a href="#">
                 <div id="uploadImg"><i class="ri-camera-2-fill"></i></div>
             </a>
+           
 
-           <a href="#"> <div id="profileImg"></div></a>
-         
+           <a href="#"> <div  id="profileImg"> 
+                <div class="upload_hover">
+                <form enctype="multipart/form-data" action="/uploadProfilePic" method="post">
+                    <input onchange="this.form.submit()" style="margin-left: 6vmax;" type="file" name="profilePic">
+                </form>
+                </div>
+                <%if(foundUser.profilePic === ""){} else{%>
+                    <img style="height: inherit; " src="../images/uploads/<%=foundUser.profilePic%>" alt="">
+                <%}%>
+
+                
+        </div></a>
+        
         </div>
         <div id="Details">
            <a href="/editProfile">
-            <button id="edit_profile_btn" style="position:absolute; right:-100%; background-color: rgb(224, 224, 224); border:none;height:2.5vmax;width:2.5vmax; font-size:1.5vmax">
+            <button id="edit_profile_btn" style="position:absolute; z-index: 999; right: 0%; background-color: rgb(224, 224, 224); border:none;height:2.5vmax;width:2.5vmax; font-size:1.5vmax">
 
                 <i class="ri-pencil-fill"></i>
             </button>
@@ -94,6 +114,8 @@
 
         <div id="openToWork">Open To Work!</div>
     </div>
+
+  
 
     <div id="dashboard">
         <h2>Your Dashboard</h2>
@@ -140,14 +162,23 @@
             </div>
         </div>
         <div class="b" id="PeopleYouMayKnow">
-            <h3>People You May Know</h3>
+            <h3 style="color: rgba(0, 0, 0, 0.596); font-size:1vmax" >People You May Know</h3>
             <div class="k">
                 <%count = 0%>
                 <%MayKnow.forEach(function(know){%>
                    <% if(count < 3){%>
+
                         <%if(know.username != foundUser.username){%>
-                            <h3 class="name"><%=know.name%></h3>
-                            <button >Follow</button>    
+                            <%if(foundUser.connectionrequestsent.indexOf(know) === -1){%>
+                           <div  class="mayKnowEach">
+                            <div style="overflow: hidden" class="profilepic"> <img style="height: inherit; width: inherit; " src="../images/uploads/<%=know.profilePic%>" alt=""></div>
+                            <h3 class="name"><%=know.username%></h3>
+                            <p><%=know.headline%></p>
+                            
+                                <a href="/connection/<%=know._id%>"> <button >Connect</button>  </a>
+                               
+                           </div>  
+                           <%}%>
                             <%count++%>    
                         <%}%>
                   <%  }%>

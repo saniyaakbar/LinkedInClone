@@ -32,13 +32,16 @@ router.get('/register/company', function (req, res) {
   res.render('registercompany');
 
 })
-router.get('/feed', function (req, res, next) {
-
-  postModel.find()
-  .populate("Userid")
-  .then(function(foundPost){
-    res.render("feed",{user:foundPost});
+router.get('/feed',isLoggedIn, function (req, res, next) {
+  userModel.findOne({username: req.session.passport.user})
+  .then(function(foundUser){
+    postModel.find()
+    .populate("Userid")
+    .then(function(foundPost){
+      res.render("feed",{user:foundPost, currentUser:foundUser});
+    })
   })
+ 
     })
 
 router.post('/register/user', function (req, res) {
@@ -63,6 +66,19 @@ router.post('/register/user', function (req, res) {
       res.send(e);
     })
 });
+
+router.get('/profile/:user', isLoggedIn, function(req, res){
+  userModel.findOne({username: req.session.passport.user})
+  .then(function(currentUser){
+    userModel.findOne({_id: req.params.user})
+    .then(function(postUser){
+      userModel.find()
+      .then(function(allUser){
+      res.render('myProfile',{isVisiting: true, foundUser:postUser , currentUser , MayKnow: allUser })
+      })
+    })
+  })
+})
 
 
 
@@ -207,9 +223,9 @@ router.post('/findbycontact', isLoggedIn, function (req, res) {
 router.get('/profile', function (req, res) {
   userModel.findOne({username: req.session.passport.user})
   .then(function(foundUser){
-    userModel.find({location: foundUser.location})
+    userModel.find()
     .then(function(MayKnow){
-      res.render("myProfile", {foundUser, MayKnow})
+      res.render("myProfile", {isVisiting: false, foundUser, MayKnow})
     })
   })
 })
@@ -224,6 +240,21 @@ router.get('/mynetwork', isLoggedIn, function (req, res) {
     
   })
 })
+
+router.post('/uploadProfilePic',upload.single("profilePic"), isLoggedIn, function(req, res){
+  userModel.findOne({username: req.session.passport.user})
+  .then(function(currentUser){
+    console.log("CHALALAA");
+    currentUser.profilePic = req.file.filename;
+    currentUser.save()
+    .then(function(updatedUser){
+      console.log(updatedUser);
+      res.redirect('/profile')
+    })
+  })
+})
+
+
 
 router.get('/editProfile', isLoggedIn, function(req, res){
   userModel.findOne({username: req.session.passport.user})
@@ -313,6 +344,15 @@ router.get('/reject/:id', function (req, res) {
         })
     })
 })
+
+router.get("/verify" , isLoggedIn, function(req, res){
+  res.render('Verify')
+})
+
+router.get("/verifyDone" , isLoggedIn, function(req, res){
+  res.render('vsubmit')
+})
+
 router.get('/connection/:id', function (req, res) {
   userModel.findOne({ username: req.session.passport.user })
     .then(function (user1) {

@@ -2,6 +2,7 @@
 
 <div class="card news mt-5 mx-4" style="width: 19rem; position: absolute; top: 7.5%;" >
 	NEWS
+	
 </div>
 
 <nav class="navbar navbar-expand-lg navbar-light ">
@@ -55,10 +56,13 @@
 						<div class="dropdown-content">
 							<a href="/profile">
 								<div id="profile">
-									<div id="dp"></div>
+									<div id="dp">
+										
+										<img src="../images/uploads/<%=currentUser.profilePic%>" alt="">
+									</div>
 									<div id="dets">
-										<h6 style="font-size: 18px; letter-spacing: 0.8px;"><%=user.name%></h6>
-										<p><%=user.description%></p>
+										<h6 style="font-size: 18px; letter-spacing: 0.8px;"><%=currentUser.name%></h6>
+										<p><%=currentUser.description%></p>
 										<div class="btn rounded-pill" id="signinbtn">View Profile</div>
 									</div>
 								</div>
@@ -90,23 +94,25 @@
 
 <div id="forflex" style="padding-top: 30px; ">
 	
+	
 	<div  class="card profilecard " style="width: 13rem; position: fixed; margin-top: 2vmax;"  >
 		<img src="../images/banner.jpg" class="card-img-top banner" alt="banner">
-		<img src="../images/user.png" class="card-img-top profilepic" alt="profilepic">
+		<img src="../images/uploads/<%=currentUser.profilePic%>" class="card-img-top profilepic" alt="profilepic">
 		<div class="card-body">
 			<%if(user.isadmin!==true){%>
 			<a href="/profile">
-				<h5 class="card-title"><%=user.name%></h5>
+				<h5 class="card-title"><%=currentUser.name%></h5>
 			</a>
 			<%}else{%>
 				<a href="/profile">
-					<h5 class="card-title"><%=user.username%></h5>
+					<h5 class="card-title"><%=currentUser.username%></h5>
 				</a>
 	
 			<%}%>
 			<p class="card-text"><%=user.headline%></p>
 			<hr>
 			<div id="second">
+				
 				<p style="text-align: justify; color: rgb(88, 88, 88);line-height: 14px">Who viewed your profile <span style="color: rgb(49, 104, 255);  margin-left: 70px; margin-top: 20px;line-height: 30px;">15</span></p>
 				<p style="text-align: justify; color: rgb(88, 88, 88); line-height: 13px;">Views of your post <span style="color: rgb(49, 104, 255);  margin-left: 70px; margin-top: 20px; line-height: 30px;">15</span></p>
 			<%if(user.isadmin===true){%>
@@ -129,7 +135,7 @@
 	<div id="posts" style="margin-top: 30px;">
 		
 		<div class="card createPost mx-5" >
-			<img src="../images/user.png" class="card-img-top profilepic" alt="profilepic">
+			<img src="../images/uploads/<%=currentUser.profilePic%>" class="card-img-top profilepic" alt="profilepic">
 			<div id="post" class="rounded-pill" style="border: 1.5px solid #a7a7a7;padding: 10px 20px;width: 80%; margin-left: 85px; margin-top: 11px; color: #646464;">Start a Post</div>
 			<div id="btns" style="display: flex; margin-top: -13px;">
 				<button type="button" class="btn btn-light"><img src="../images/photo-icon.png" alt=""> Photo</button>
@@ -143,7 +149,7 @@
 <%if(elem.imageurl==null){%>
 	<div class="card post mt-5 mx-5">
 		<img src="../images/user.png" class="card-img-top profilepic" alt="profilepic">
-		<a href="/profile/currentUser>" style="text-decoration: none; color: black;">
+		<a href="/profile/<%=elem.Userid._id%>" style="text-decoration: none; color: black;">
 			<h5 style="margin-left: 85px; margin-top: 19px;"><%=elem.Userid.name%></h5>
 		</a>
 		<p style="margin-left: 85px; margin-top: -5px;"><%=elem.Userid.headline%></p>
@@ -155,10 +161,10 @@
 		<%}else{%>
 
 	<div class="card post mt-5 mx-5" >
-			<div id="con1"><img src="../images/user.png" class="card-img-top profilepic" style="height: 3vmax; width:3vmax" alt="profilepic">
-				<a href="/profile/currentUser>" style="text-decoration: none; color: black;">
+			<div id="con1"><img src="../images/uploads/<%=elem.Userid.profilePic%>" class="card-img-top profilepic" style="height: 3vmax; width:3vmax" alt="profilepic">
+				<a href="/profile/<%=elem.Userid._id%>" style="text-decoration: none; color: black;">
 					<h5 style="margin-left: 85px; margin-top: 19px;"><%=elem.Userid.name%></h5>
-					<p style="margin-left:5.5vmax; margin-top:-1vmax; opacity:0.5"><%=elem.Userid.location%></p>
+					<p style="margin-left:5.5vmax; margin-top:-0.4vmax; opacity:0.5"><%=elem.Userid.location%></p>
 				</a>
 				<!-- <p style="margin-left: 85px; margin-top:-2px;"><%=user.headline%></p> -->
 				</div>
@@ -199,7 +205,7 @@
 </div>
 <script>
 	var flag=0;
-var profile=document.querySelector('#posts')
+var profile=document.querySelector('.createPost')
 profile.addEventListener('click',function(dets){
 if(flag===0)
 {

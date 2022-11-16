@@ -264,6 +264,14 @@ li > a:hover .flex {
 	height: 60px;
 	border-radius: 50%;
 	background-color: aqua;
+	overflow: hidden;
+}
+
+#dp img{
+	height: inherit;
+	width: inherit;
+	/* position: absolute; */
+	/* z-index: 999; */
 }
 
 #dets {
