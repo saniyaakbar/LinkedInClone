@@ -93,13 +93,13 @@
 		<div id="container11" style="display: flex; padding-top: 20px;">
 			<div id="flexdiv" style="border-top: 1px solid transparent; position: fixed;">
 				<div class="card profilecard "
-					style="width:20rem; min-height:30rem ;margin-top: 50px; margin-left: 60px;  ">
+					style="width:20rem;padding-left: 0.5vmax; padding-right: 0.5vmax; min-height:30rem ;margin-top: 50px; margin-left: 60px;  ">
 					<h5 style="margin-left: 15px; margin-top: 10px; font-size: 20px;">Manage my network</h5>
 					<div id="container1"
-						style="display: flex; justify-content: space-between;padding: 0 30px; margin-top: 20px; font-weight: 100;">
+						style="background-color: rgb(219, 219, 219); border-radius: 1vmax; display: flex; justify-content: space-between;padding: 0 30px; margin-top: 20px;  font-weight: 100;">
 						<div id="con11"
 							style="display: flex;justify-content: space-between; padding-left: 10px; font-size: 1.2em; font-weight: lighter;">
-							<i class="ri-group-line"></i><a href="/showConnections" style="text-decoration: none; color: black;">
+							<i class="ri-group-line"></i><a href="/showConnections" style="text-decoration: none; color: black; ">
 								<h6 style="margin-top: 5px
             ; margin-left: 5px;">Connections </h6>
 							</a> </div>
@@ -144,32 +144,10 @@
 
 				</div>
 			</div>
-			<div id="invitations">
-				<%foundUser.connectionrequest.forEach(function(request){%>
-					<div id="subInvitations">
-						<div id="pImg"></div>
-						<div id="text" style="margin-left: 10px; padding: 10px;font-family: product sans;">
-							<h1><%=request.username%></h1>
-							<h5><%=request.headline%></h5>
-							<h6>followed by <%=request.connections.length%> others</h6>
-						</div>
-						<div id="requests">
-							<style>
-							</style>
-							<button style="border: none; color: grey;"><a href="/reject/<%=request._id%>"
-									style="text-decoration: none;">reject</a></button>
-							<button style="border: 1px solid blue; color: blue;"><a href="/accept/<%=request._id%>"
-									style="text-decoration: none;">Accept</a> </button>
-						</div>
-					</div>
-				<%})%>
-				
-			</div>
+			
 		</div>
 		<div id="suggestionbox">
-			<%allUsers.forEach(function(users){%>
-				<%if(foundUser.connectionrequestsent.indexOf(users._id) === -1 && foundUser.connectionrequest.indexOf(users._id) === -1 && foundUser.connectionrequest.indexOf(users._id) === -1){%>
-						<%if(foundUser.username !== users.username){%>
+			<%foundUser.connections.forEach(function(users){%>
 							<div id="cardpeoples">
 								<div id="cardimg">
 									<div id="imgcard" style="overflow: hidden; ">
@@ -182,12 +160,10 @@
 									<p><%=users.description%></p>
 									<p id="hash_tags">#html #microsoft #apple #google #facebook #mern</p>
 								</div>
-								<button id="connect_btn"><a href="/connection/<%=users._id%>"
-										style="text-decoration: none;">Connect</a></button>
+								<button id="connect_btn"><a href="/removeConnection/<%=users._id%>"
+										style="text-decoration: none;">Remove</a></button>
 				
 							</div>
-						<%}%>
-				<%}%>
 			<%})%>
 			
 		</div>

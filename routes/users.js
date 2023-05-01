@@ -42,6 +42,15 @@ const userSchema=mongoose.Schema({
   profilePic: {
     type:String,
     default:"user.png"
+  },
+  background: {
+    type:String,
+    default:"LinkedIn-Default-Background-2020-.png"
+  },
+  education: String,
+  about:{
+    type:String,
+    default:"Add About section To make your profile seem authenticated and genuine"
   }
   
 

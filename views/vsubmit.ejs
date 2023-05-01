@@ -2,14 +2,14 @@
 <nav class="navbar navbar-expand-lg navbar-light ">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="#"><img src="../images/icon.jpg" alt=""></a>
-		<form class="d-flex">
-			<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-			<button class="btn btn-outline-primary" type="submit">Search</button>
+		<form class="d-flex" method="post" action="/userprofile">
+			<input class="form-control me-2" aria-label="Search" type="search" id="search" type="text" name="username" placeholder="Search">
 		</form>
+	
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li id="marleft" class="nav-item d-flex flex-column align-items-center">
-					<a class="nav-link active" aria-current="page" href="/profile">
+					<a class="nav-link active" aria-current="page" href="/feed">
 						<div class="icon flex"><img class="img" style="opacity: 1;" src="../images/home.png" alt=""></div>
 						<div class="hometxt flex">Home</div>
 					</a>

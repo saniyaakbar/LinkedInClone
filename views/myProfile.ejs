@@ -8,13 +8,29 @@
 	<link rel="icon" href="../images/icon.jpg" type="image/icon type">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="stylesheet" href="/stylesheets/profile.css">
+    <link rel="stylesheet" href="../stylesheets/editIntro.css">
+
 	<title> title </title>
 	
 </head>
 
 <body>
+    <div id="about_edit_field">
+      
+            <div id="introForm">
+                <i id="close_edit_field" class="ri-close-line"></i>
+                <h1>ABOUT</h1>
+                <p>* indicates required</p>
+                <form id="form" action="/editAbout" method="post">
+                    <textarea name="about"  aria-valuemax="300" cols="30" rows="5" name="about" placeholder="About*"><%=foundUser.about%></textarea>
+                   <button style="margin-left:30%; border:1px solid blue; color:blue;background-color:white; padding: 0.5vmax; border-radius:2vmax; width:30%">Submit</button>
+                </form>
+            </div>
+        
+    </div>
 
     <div id="main">
+        <div id="overlay"></div>
     <div id="nav">
         <div id="center">
             <div id="left">
@@ -22,8 +38,8 @@
 
                 <div id="inputField">
                     <i class="ri-search-2-line"></i>
-                    <form action="#">
-                        <input id="search" type="text" placeholder="Search">
+                    <form method="post" action="/userprofile">
+                        <input id="search" type="text" name="username" placeholder="Search">
                     </form>
                 </div>
                
@@ -55,12 +71,12 @@
           </div>
 
           <%if(isVisiting){%>
-            <a href="/feed"><button style="margin-right: 1vmax;" >My Feed</button></a>
+            <a href="/feed"><button style="margin-right: 1vmax;color: blue; background-color: white; border: 1px solid blue;" >My Feed</button></a>
 
-            <a href="/profile"><button style="margin-right: 1vmax;" >My Profile</button></a>
+            <a href="/profile"><button style="margin-right: 1vmax; color: blue; background-color: white; border: 1px solid blue;" >My Profile</button></a>
           <%}%>
 
-          <a href="/logout"><button>Logout</button></a>
+          <a href="/logout"><button style="margin-right: 1vmax; color: blue; background-color: white; border: 1px solid blue;" >Logout</button></a>
             </div>
         </div>
     </div>
@@ -69,10 +85,17 @@
     <div id="profileTopBox">
 
         
-        <div id="backgroundImg">
-            <a href="#">
-                <div id="uploadImg"><i class="ri-camera-2-fill"></i></div>
-            </a>
+        <div id="backgroundImg" style="background-image: url(../images/uploads/<%=foundUser.background%>) ">
+            
+            <%if(!isVisiting){%>
+               
+                    <div id="uploadImg"><i class="ri-camera-2-fill"></i></div>
+                    <form id="bgImg" action="/uploadBackground" method="post" enctype="multipart/form-data">
+                        <input type="file" onchange="this.form.submit()" name="background">
+                    </form>
+                
+               
+           <% }%>
            
 
            <a href="#"> <div  id="profileImg"> 
@@ -89,13 +112,27 @@
         </div></a>
         
         </div>
-        <div id="Details">
-           <a href="/editProfile">
-            <button id="edit_profile_btn" style="position:absolute; z-index: 999; right: 0%; background-color: rgb(224, 224, 224); border:none;height:2.5vmax;width:2.5vmax; font-size:1.5vmax">
-
-                <i class="ri-pencil-fill"></i>
-            </button>
-           </a>
+        <div id="Details" style=" width: 80%">
+            <%if(!isVisiting){%>
+                <div id="edit_Details" style=" display: flex; justify-content: space-between;width: 15%; height: 30%; position: absolute; right: 0%;">
+                    <a href="/editProfile">
+                        <button id="edit_profile_btn" style="background-color: rgb(224, 224, 224); border:none;height:2.5vmax;width:2.5vmax; font-size:1.5vmax">
+            
+                            <i class="ri-pencil-fill"></i>
+                        </button>
+                       </a>
+            
+                       <a href="/editJob">
+                        <button id="edit_job_btn" style="background-color: rgb(224, 224, 224); border:none;height:2.5vmax;width:2.5vmax; font-size:1.5vmax">
+            
+                            <i class="ri-briefcase-4-fill"></i>
+                        </button>
+                       </a>
+            
+                </div>
+           <% }%>
+           
+           
         <h3 id="username"><%=foundUser.username%></h3>
         <%if(true){%>
             <h4 id="headline"><%=foundUser.headline%></h4>
@@ -105,43 +142,73 @@
         <h4 id="location"><%=foundUser.location%> <%=foundUser.country%></h4>
         <a class="link" id="contactInfo" href="#">Contact Info</a>
         </div>
-        <a class="link" id="connection" href="#">0 connections</a>
+        <a class="link" id="connection" href="#"><%=foundUser.connections.length%> connections</a>
 
+        <%if(!isVisiting){%>
         <a href="#">
             <div id="openTo">Open To</div>
         </a>
+        <% } else{%>
+            <a href="/connection/<%=foundUser._id%>">
+                
+                    <%if(foundUser.connectionrequest.indexOf(currentUser._id) !== -1){%>
+                        <button class="connection_btn" style="color : white; background-color : rgb(3, 3, 147)">   Request Sent </button>
+                   <% } else if(foundUser.connections.indexOf(currentUser._id) !== -1){%>
+                    <button class="connection_btn" style="color : white; background-color : rgb(3, 3, 147)">  Connected </button>
+                   <%} else{%>
+                    <button class="connection_btn"> Connect </button>
+                   <%}%>
+                   
+                
+            </a>
+        <%}%>
         </div>
 
-        <div id="openToWork">Open To Work!</div>
+       
+        <div id="openToWork">Open To Work!</div>     
+      
     </div>
 
   
 
     <div id="dashboard">
-        <h2>Your Dashboard</h2>
-        <div id="box">
-            <div class="a" id="profileViews">
-                <h1>0</h1>
-                <h3>Who viewed your profile</h3>
-            </div>
-            <div class="a" id="postViews">
-                <h1>0</h1>
-                <h3>Post views</h3>
-            </div>
-            <div class="a" id="searchAppearaces">
-                <h1>0</h1>
-                <h3>Search Appearances</h3>
-            </div>
-        </div>
+
+        <%if(!isVisiting){%>
+            <button id="edit_about_btn">
+                <i class="ri-pencil-fill"></i>
+            </button>
+      <%  }%>
+        
+          
+           
+        <h2>About</h2>
+        <p><%=foundUser.about%></p>
     </div>
 
+    
     <div id="activity">
         <h3>Activity</h3>
-        <h2>0 followers</h2>
+        <h2><%=foundUser.connections.length%> Connections</h2>
         <%if(foundUser.usersPost.length == 0){%>
             <h2 style="color: black; font-weight: 100; margin-top: 20px;">Posts you created, shared, or commented on in the last 90 days are displayed here.</h2>
         <%}else{%>
-            <h2>Posts</h2>
+            <%var count = 0;%>
+                <%foundUser.usersPost.forEach(function(e){%>
+                    <%if(count < 2){%>
+
+                        <div class="activities_box">
+                            <div class="profilepic" style="overflow: hidden ; height: 4.5vmax; width: 4.5vmax;">
+                                <img style="height: inherit; width:inherit" src="../images/uploads/<%=foundUser.profilePic%>" alt="">
+                            </div>
+                            <h3 style="margin-left: 6vmax; font-size:0.9vmax"><%=foundUser.username%></h3>
+                            <p style="margin-left: 6vmax; font-size:0.9vmax; color: rgba(0, 0, 0, 0.406);"><%=foundUser.location%></p>
+                            <p style="margin-left: 6vmax; font-size:1.2vmax;""><%=e.postcontent.substring(0, 33).trimEnd() + '...';%></p>
+                            </div>
+                   <% }%>
+                    
+                    <%count++;%>
+                <%})%>
+           
         <%}%>
     
         
@@ -153,44 +220,45 @@
     <div id="rightDiv">
         <div class="b" id="PeopleAlsoViewed">
            <div class="k">
-            <h3>People Also Viewed</h3>
+            <h5 style="font-size: 1vmax"> Edit profile & Url</h5>
            </div>
+           
+           <div class="k">
+            <h5 style="font-size: 1vmax"> Edit Language</h5>
+           </div>
+           
+
             
-            <div class="btm">
-                
-                <a href="#"><h2>Show All</h2></a>
-            </div>
         </div>
         <div class="b" id="PeopleYouMayKnow">
             <h3 style="color: rgba(0, 0, 0, 0.596); font-size:1vmax" >People You May Know</h3>
             <div class="k">
-                <%count = 0%>
+                
                 <%MayKnow.forEach(function(know){%>
-                   <% if(count < 3){%>
-
+                  
+                   
                         <%if(know.username != foundUser.username){%>
-                            <%if(foundUser.connectionrequestsent.indexOf(know) === -1){%>
+                            <%if(foundUser.connectionrequestsent.indexOf(know._id) === -1){%>
+                               
                            <div  class="mayKnowEach">
                             <div style="overflow: hidden" class="profilepic"> <img style="height: inherit; width: inherit; " src="../images/uploads/<%=know.profilePic%>" alt=""></div>
                             <h3 class="name"><%=know.username%></h3>
-                            <p><%=know.headline%></p>
+                            <p><%=know.headline.substring(0, 23).trimEnd() + '...';%></p>
                             
                                 <a href="/connection/<%=know._id%>"> <button >Connect</button>  </a>
                                
                            </div>  
                            <%}%>
-                            <%count++%>    
+                               
                         <%}%>
-                  <%  }%>
+                 
                    
 
                <% })%>
                
             </div>
             
-            <div class="btm">
-              <a href="#">  <h2>Show All</h2></a>
-            </div>
+           
         </div>
     </div>
    
@@ -198,6 +266,18 @@
     </div>
 
 <script>
+
+    document.querySelector("#edit_about_btn").addEventListener("click", function(event){
+        
+        document.querySelector("#overlay").style.display = "initial";
+        document.querySelector("#about_edit_field").style.display = "initial";
+    })
+
+    document.querySelector("#close_edit_field").addEventListener("click", function(event){
+        
+        document.querySelector("#overlay").style.display = "none";
+        document.querySelector("#about_edit_field").style.display = "none";
+    })
 
     var searchBar = document.querySelector("#inputField");
     var searchInput = document.querySelector("#search");

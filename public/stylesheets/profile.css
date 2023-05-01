@@ -179,10 +179,10 @@ a:hover i{
 #backgroundImg{
     height: 26vh;
     width: 100%;
-    background-color: violet;
+    /* background-color: violet; */
     position: relative;
-    background-image: url(/images/LinkedIn-Default-Background-2020-.png);
     background-size: cover;
+    background-position: bottom;
 }
 
 #uploadImg{
@@ -197,6 +197,14 @@ a:hover i{
     height: 25px;
     width: 25px;
     background-color: #fff;
+}
+
+#backgroundImg #bgImg{
+    display: none;
+}
+
+#backgroundImg:hover #bgImg{
+    display: initial;
 }
 
 #profileImg{
@@ -290,22 +298,79 @@ a:hover i{
     /* position: absolute; */
     /* top: 85vh; */
     /* left: 13%; */
-    color: grey;
+    color: rgb(0, 0, 0);
     font-family: product sans;
     font-weight: 100;
     margin-top: 20px;
     margin-left: 13%;
-    min-height: 30vh;
+    min-height: 20vh;
     width: 50%;
-    background-color: #DCE6F1;
+    background-color: #ffffff;
     position: relative;
+    border-radius: 1vmax;
+}
+
+#edit_about_btn{
+    background-color: rgb(224, 224, 224); 
+    border:none;
+    height:2.5vmax;
+    width:2.5vmax; 
+    font-size:1.5vmax ; 
+    position: absolute; 
+    right: 5%;
+}
+
+
+#about_edit_field{
+    position: absolute;
+    border-radius: 1vmax;
+    z-index: 999999;
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    /* height: 60vh; */
+    width: 80%;
+    background-color: #fff;
+    display: none;
+    font-size: 2vmax
+}
+
+#about_edit_field i{
+    background-color: rgb(190, 189, 189);
+    border-radius: 50%;
+    position: absolute;
+    right: 5%;
+    top: 5%;
+}
+
+textarea{
+    font-size: 1vmax;
+    margin-top: 1vmax;
+    padding: 1vmax;
+    height: 80%;
+    width: 100%;
+    outline: none;
+    border-radius: 1vmax;
+}
+
+#overlay{
+    display: none;
+    position: absolute;
+    z-index: 9;
+    height: 190vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.281);
 }
 
 #dashboard h2{
-    font-size: 20px;
+    font-size: 2vmax;
     font-weight: 100;
-    color: grey;
+    color: rgb(0, 0, 0);
     font-family: product sans; 
+}
+
+#dashboard p{
+    margin-top: 0.5vmax;
 }
 
 #box{
@@ -382,8 +447,8 @@ a:hover i{
     position: absolute;
     top: 13%;
     /* background-color: #fff; */
-    width: 30%;
-    right: 5%;
+    width: 33%;
+    right: 2%;
     font-family: product sans;
     font-weight: 100;
     color: grey;
@@ -393,7 +458,7 @@ a:hover i{
 .b{
     padding: 30px;
     border-radius: 10px;
-    min-height: 30vh;
+    min-height: 20vh;
     width: 70%;
     background-color: #fff;
     /* overflow: hidden; */
@@ -415,8 +480,11 @@ a:hover i{
 }
 
 .k{
-    min-height: inherit;
+    margin-top: 1vmax;
+    min-height: 2vmax;
     padding-bottom: 40px;
+    border-bottom: 1px solid rgb(184, 184, 184);
+    /* background-color: #2174C7; */
 }
 
 .btm h2{
@@ -462,6 +530,19 @@ button{
     border: 1px solid rgb(3, 3, 79);
 }
 
+.connection_btn{
+    position: absolute;
+    top: 100%;
+    left: -8%;
+    margin-left: 3vmax;
+    width: 13vmax;
+    margin-top: 0.3vmax;
+    margin-bottom: 0.3vmax;
+    background-color: #fff;
+    color: rgb(3, 3, 79);
+    border: 1px solid rgb(3, 3, 79);
+}
+
 .upload_hover{
     background-color: rgba(0, 0, 0, 0.285); 
                 position:absolute;
@@ -489,4 +570,13 @@ button{
 
 #profileImg:hover .upload_hover{
     display: flex;
+}
+
+.activities_box{
+    margin-top: 1vmax;
+    /* border-radius: 0.6vmax; */
+    border-bottom: 1px solid rgba(142, 142, 142, 0.436);
+    height: 5vmax;
+    width: 90%;
+    /* background-color: #2174C7; */
 }

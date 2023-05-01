@@ -1,17 +1,31 @@
 <% include ./partials/header.ejs %>
 
-<div class="card news mt-5 mx-4" style="width: 19rem; position: absolute; top: 7.5%;" >
-	NEWS
+<div id="LinkedIn_news" style="padding: 1vmax; padding-left: 2vmax; height: 38vh; width:19rem; background-color: white; position: absolute; top: 13%; right: 9%; border-radius: 1vmax;">
+	<img src="../images/LinkedIn-news.jpg" style="width: 90%;" alt="">
+</div>
+
+<div id="LinkedIn_business" style="position: absolute; top : 40%; height:95vh; right:20.5%">
+	<div class="news mt-5 mx-4" style="background-color: rgb(255, 255, 255); border-radius: 1vmax; width: 19rem; position: absolute; top: 7.5%;" >
+		<img src="../images/LinkedIn-Products.jpg" alt="">
+		
+	</div>
 	
+	<div class="news mt-5 mx-4" style="background-color: rgb(255, 255, 255); border-radius: 1vmax; width: 19rem; position: absolute; top: 42%;" >
+		<img src="../images/LinkedIn-Business.jpg" alt="">
+		
+	</div>
 </div>
 
 <nav class="navbar navbar-expand-lg navbar-light ">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="/feed"><img src="../images/icon.jpg" alt=""></a>
-		<form class="d-flex">
-			<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-			<button class="btn btn-outline-primary" type="submit">Search</button>
-		</form>
+		
+			
+			<form class="d-flex" method="post" action="/userprofile">
+				<input class="form-control me-2" aria-label="Search" type="search" id="search" type="text" name="username" placeholder="Search">
+			</form>
+		
+		
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li id="marleft" class="nav-item d-flex flex-column align-items-center">
@@ -95,7 +109,7 @@
 <div id="forflex" style="padding-top: 30px; ">
 	
 	
-	<div  class="card profilecard " style="width: 13rem; position: fixed; margin-top: 2vmax;"  >
+	<div  class="card profilecard " style="width: 13rem; position: fixed; margin-top: 5.5vmax;"  >
 		<img src="../images/banner.jpg" class="card-img-top banner" alt="banner">
 		<img src="../images/uploads/<%=currentUser.profilePic%>" class="card-img-top profilepic" alt="profilepic">
 		<div class="card-body">
@@ -152,7 +166,14 @@
 		<a href="/profile/<%=elem.Userid._id%>" style="text-decoration: none; color: black;">
 			<h5 style="margin-left: 85px; margin-top: 19px;"><%=elem.Userid.name%></h5>
 		</a>
-		<p style="margin-left: 85px; margin-top: -5px;"><%=elem.Userid.headline%></p>
+		<p style=" margin-left: 85px; margin-top: -5px; font-size: 0.9vmax; color: rgba(0, 0, 0, 0.444);">
+			<%if(elem.Userid.location.length > 10){%>
+				<%=elem.Userid.location.substring(0, 23).trimEnd() + '...';%>
+			<%} else{%>
+				<%=elem.Userid.location%>
+			<%}%>
+			
+		</p>
 		<%if(elem.postcontent === ""){} else {%>
 			<p class="post_content"><%=elem.postcontent%></p>
 		<%}%>
@@ -164,7 +185,14 @@
 			<div id="con1"><img src="../images/uploads/<%=elem.Userid.profilePic%>" class="card-img-top profilepic" style="height: 3vmax; width:3vmax" alt="profilepic">
 				<a href="/profile/<%=elem.Userid._id%>" style="text-decoration: none; color: black;">
 					<h5 style="margin-left: 85px; margin-top: 19px;"><%=elem.Userid.name%></h5>
-					<p style="margin-left:5.5vmax; margin-top:-0.4vmax; opacity:0.5"><%=elem.Userid.location%></p>
+					<p style=" margin-left: 85px; margin-top: -5px; font-size: 0.9vmax; color: rgba(0, 0, 0, 0.444);">
+						<%if(elem.Userid.location.length > 10){%>
+							<%=elem.Userid.location.substring(0, 23).trimEnd() + '...';%>
+						<%} else{%>
+							<%=elem.Userid.location%>
+						<%}%>
+						
+					</p>
 				</a>
 				<!-- <p style="margin-left: 85px; margin-top:-2px;"><%=user.headline%></p> -->
 				</div>
@@ -191,8 +219,9 @@
 		
 	</div>
 	<div id="postbox" style="width: 40rem; height: 45vh; background-color: #FFFFFF	; position: absolute;top: 60% ;left:65%;transform: translate(-65%,-60%); border-radius: 50px; display: none; padding: 20px 30px;">
-	<form action="/createpost" enctype="multipart/form-data" method="post">
-<input type="text" name="postcontent" placeholder="create your post here" style="width: 100%; height:20vh;border-radius: 20px; padding-left: 20px;">
+	
+		<form action="/createpost" enctype="multipart/form-data" method="post">
+			<textarea  name="postcontent" placeholder="create your post here" cols="30" rows="10" style="padding: 1vmax; width: 100%; height:20vh;border-radius: 20px; padding-left: 20px;"></textarea>
 <input type="file" name="imageurl" style="margin-top: 12px
 ;" >
 <input type="submit" value="post" style="margin-top: 60px; border-radius: 15px;width: 90px;; font-size: 17px ; display: flex ;justify-content: center; align-items: center;">
